@@ -1,0 +1,233 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - salut
+    - bonjour
+    - bonsoir
+    - coucou
+    - hello there
+    - good morning
+    - good evening
+    - bon matin
+    - hola
+
+- intent: goodbye
+  examples: |
+    - au revoir
+    - à bientôt
+    - bye
+    - goodbye
+    - à plus tard
+    - merci au revoir
+    - c'est terminé
+    - je dois y aller
+    - bonne journée
+    - bonne soirée
+
+- intent: affirm
+  examples: |
+    - oui
+    - bien sûr
+    - évidemment
+    - correct
+    - effectivement
+    - tout à fait
+    - exactement
+    - c'est ça
+    - absolument
+    - y
+    - yes
+
+- intent: deny
+  examples: |
+    - non
+    - jamais
+    - je ne pense pas
+    - je ne crois pas
+    - pas du tout
+    - certainement pas
+    - pas vraiment
+    - n
+    - no
+    - pas d'accord
+
+- intent: ask_help
+  examples: |
+    - j'ai besoin d'aide
+    - pouvez-vous m'aider
+    - comment ça marche
+    - je ne sais pas quoi faire
+    - aidez-moi s'il vous plaît
+    - que dois-je faire
+    - pouvez-vous me guider
+    - comment déclarer un sinistre
+    - je suis perdu
+    - comment ça fonctionne
+    - quelles sont les premières questions
+    - quels sont les premières questions
+    - que me demandez-vous
+    - quelles informations avez-vous besoin
+    - par où commencer
+    - que faut-il faire maintenant
+
+- intent: declare_sinistre
+  examples: |
+    - je veux déclarer un sinistre
+    - je dois signaler un accident
+    - j'ai eu un problème avec ma voiture
+    - ma maison a subi un dégât
+    - je veux signaler un vol
+    - j'ai subi un cambriolage
+    - je dois déclarer un incendie
+    - il y a eu un dégât des eaux
+    - j'ai un bris de glace à déclarer
+    - j'ai eu un accident de voiture
+    - ma maison a été inondée
+    - je voudrais déclarer un sinistre pour ma voiture
+    - il y a eu une catastrophe naturelle
+    - j'ai causé des dommages à un tiers
+    - je veux faire une déclaration responsabilité civile
+    - j'aimerais déclarer un accident de voiture
+    - je veux déclarer un accident
+    - j'ai besoin de déclarer un sinistre
+    - je souhaite faire une déclaration
+    - je veux signaler un sinistre
+    - j'ai un sinistre à déclarer
+    - je dois faire une déclaration de sinistre
+    - j'ai eu un accident
+    - j'ai un problème à déclarer
+    - je veux commencer une déclaration
+
+- intent: inform
+  examples: |
+    - accident de voiture
+    - incendie
+    - dégât des eaux
+    - vol
+    - cambriolage
+    - bris de glace
+    - catastrophe naturelle
+    - responsabilité civile
+    - 01/06/2025
+    - 15/05/2025
+    - hier
+    - aujourd'hui
+    - [12 rue du Commerce Paris](lieu)
+    - [15 avenue des Champs-Élysées](lieu)
+    - [centre commercial de la ville](lieu)
+    - [sur l'autoroute A1](lieu)
+    - [dans mon garage](lieu)
+    - [à mon domicile](lieu)
+    - [ma voiture a été percutée par l'arrière](description)
+    - [un incendie s'est déclaré dans la cuisine](description)
+    - [une fuite d'eau provenant de l'appartement du dessus](description)
+    - [j'ai retrouvé ma porte d'entrée forcée](description)
+    - [ma fenêtre a été cassée par un projectile](description)
+    - [1](nb_personnes)
+    - [2](nb_personnes)
+    - [3](nb_personnes)
+    - [plusieurs](nb_personnes)
+    - [AB-123-CD](immatriculation)
+    - [XX-987-YZ](immatriculation)
+    - oui il y a des tiers impliqués
+    - non il n'y a pas de tiers
+    - oui il y a eu des blessés
+    - non pas de blessés
+    - appartement
+    - maison
+    - local commercial
+    - oui les pompiers sont intervenus
+    - non les pompiers ne sont pas venus
+    - oui j'ai déposé plainte
+    - non je n'ai pas encore déposé plainte
+    - [téléviseur, bijoux et ordinateur portable](biens_voles)
+    - [mon ordinateur et ma télévision](biens_voles)
+    - [des bijoux et de l'argent](biens_voles)
+    - [ma voiture et mon vélo](biens_voles)
+    - [mon voisin Monsieur Dupont](identite_tiers)
+    - [Madame Martin du 3ème étage](identite_tiers)
+    - [un inconnu](identite_tiers)
+    - [le propriétaire de l'autre véhicule](identite_tiers)
+    - [dégât sur une clôture](nature_dommage)
+    - [rayure sur la voiture](nature_dommage)
+    - [casse d'une vitre](nature_dommage)
+    - [dommage à la propriété](nature_dommage)
+
+- intent: out_of_scope
+  examples: |
+    - quel temps fait-il aujourd'hui
+    - je veux commander une pizza
+    - comment faire un gâteau
+    - parle-moi de toi
+    - raconte-moi une blague
+    - quelle est la capitale de la France
+    - je veux parler à un humain
+    - j'ai besoin d'un médecin
+    - quels sont vos horaires d'ouverture
+    - où se trouve votre agence
+
+- intent: ask_summary
+  examples: |
+    - peux-tu me montrer un résumé
+    - récapitule ma déclaration
+    - montre-moi ce que j'ai déclaré
+    - résume ma déclaration
+    - je veux voir un résumé
+    - donne-moi le récapitulatif
+    - qu'est-ce que j'ai déclaré jusqu'à présent
+    - est-ce que tout est correct
+    - je veux vérifier mes informations
+
+- intent: stop_form
+  examples: |
+    - arrête
+    - stop
+    - je veux arrêter
+    - annuler
+    - je ne veux plus continuer
+    - arrête le formulaire
+    - je veux quitter
+    - annuler la déclaration
+    - je veux recommencer
+    - stop stop stop
+
+- intent: submit
+  examples: |
+    - soumettre
+    - envoyer ma déclaration
+    - finaliser
+    - terminer la déclaration
+    - c'est bon pour moi
+    - je confirme ces informations
+    - tout est correct
+    - envoyer
+    - valider ma déclaration
+    - soumettre mon dossier
+
+- intent: bot_challenge
+  examples: |
+    - es-tu un bot
+    - es-tu un humain
+    - est-ce que je parle à un robot
+    - suis-je en train de parler à une personne
+    - es-tu réel
+    - es-tu une vraie personne
+    - tu es un bot ou un humain
+    - qui es-tu
+
+- intent: correct_info
+  examples: |
+    - je veux corriger
+    - je me suis trompé
+    - ce n'est pas correct
+    - je veux changer ma réponse
+    - erreur
+    - non ce n'est pas ça
+    - je veux modifier
+    - attendez ce n'est pas bon
+    - je me suis mal exprimé
+    - laissez-moi corriger

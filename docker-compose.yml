@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  rasa:
+    build: .
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./:/app
+      - ./models:/app/models
+    command: ["rasa", "run", "--enable-api", "--cors", "*", "--debug"]
+    environment:
+      - RASA_TELEMETRY_ENABLED=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5005/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  rasa-actions:
+    build: .
+    volumes:
+      - ./:/app
+    command: ["rasa", "run", "actions", "--debug"]
+    ports:
+      - "5055:5055"
+    environment:
+      - RASA_TELEMETRY_ENABLED=false
+    depends_on:
+      - rasa
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5055/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  web-interface:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - rasa
+      - rasa-actions
+    restart: unless-stopped
+
+volumes:
+  models: 

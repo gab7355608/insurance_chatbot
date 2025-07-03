@@ -1,0 +1,41 @@
+version: "3.1"
+
+stories:
+
+- story: greet and help
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_help
+  - action: utter_help
+
+- story: declare sinistre basic
+  steps:
+  - intent: declare_sinistre
+  - action: utter_help
+  - action: action_start_sinistre_form
+
+- story: user asks for summary during form
+  steps:
+  - active_loop: sinistre_form
+  - intent: ask_summary
+  - action: action_show_summary
+  - action: sinistre_form
+
+- story: user wants to stop but then continues
+  steps:
+  - active_loop: sinistre_form
+  - intent: stop_form
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: sinistre_form
+
+- story: user wants to stop and does stop
+  steps:
+  - active_loop: sinistre_form
+  - intent: stop_form
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_reset_slots
+  - action: utter_goodbye
+  - active_loop: null

@@ -1,0 +1,263 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - ask_help
+  - declare_sinistre
+  - inform
+  - out_of_scope
+  - ask_summary
+  - stop_form
+  - submit
+  - bot_challenge
+  - correct_info
+
+entities:
+  - type_sinistre
+  - date_sinistre
+  - lieu
+  - description
+  - nb_personnes
+  - immatriculation
+  - tiers_impliques
+  - blessures
+  - type_bien
+  - pompiers
+  - dommages_majeurs
+  - depot_plainte
+  - biens_voles
+  - identite_tiers
+  - nature_dommage
+
+slots:
+  type_sinistre:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: type_sinistre
+  
+  date_sinistre:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: date_sinistre
+  
+  lieu:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: lieu
+  
+  description:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: description
+  
+  nb_personnes:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: nb_personnes
+  
+  immatriculation:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: immatriculation
+  
+  tiers_impliques:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: tiers_impliques
+  
+  blessures:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: blessures
+  
+  type_bien:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: type_bien
+  
+  pompiers:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: pompiers
+  
+  dommages_majeurs:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: dommages_majeurs
+  
+  depot_plainte:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: depot_plainte
+  
+  biens_voles:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: biens_voles
+  
+  identite_tiers:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: identite_tiers
+  
+  nature_dommage:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: nature_dommage
+  
+  requested_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+responses:
+  utter_greet:
+  - text: "Bonjour ! Je suis l'assistant de déclaration de sinistre. Comment puis-je vous aider aujourd'hui ?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Au revoir et merci d'avoir utilisé notre service de déclaration de sinistre."
+
+  utter_iamabot:
+  - text: "Je suis un assistant virtuel conçu pour vous aider à déclarer votre sinistre."
+
+  utter_help:
+  - text: "Je vais vous guider pas à pas pour déclarer votre sinistre. Je vais vous poser quelques questions pour recueillir les informations nécessaires."
+
+  utter_ask_continue:
+  - text: "Souhaitez-vous continuer la déclaration de sinistre ?"
+
+  utter_ask_type_sinistre:
+  - text: "Quel type de sinistre souhaitez-vous déclarer ? (accident de voiture, incendie, dégât des eaux, vol/cambriolage, bris de glace, catastrophe naturelle, responsabilité civile)"
+
+  utter_ask_date_sinistre:
+  - text: "À quelle date s'est produit le sinistre ? Vous pouvez indiquer la date au format JJ/MM/AAAA ou utiliser des expressions comme 'hier', 'avant-hier', 'la semaine dernière'."
+
+  utter_ask_lieu:
+  - text: "Où s'est produit le sinistre ? Veuillez indiquer l'adresse ou le lieu précis."
+
+  utter_ask_description:
+  - text: "Pouvez-vous décrire brièvement ce qui s'est passé ? Merci de donner un maximum de détails sur les circonstances du sinistre."
+
+  utter_ask_nb_personnes:
+  - text: "Combien de personnes étaient impliquées dans cet événement ? Si vous ne savez pas exactement, vous pouvez indiquer 'plusieurs'."
+
+  utter_ask_immatriculation:
+  - text: "Quelle est l'immatriculation du véhicule concerné ?"
+
+  utter_ask_tiers_impliques:
+  - text: "Y a-t-il d'autres personnes impliquées dans cet accident ? Veuillez répondre par oui ou par non."
+
+  utter_ask_blessures:
+  - text: "Y a-t-il eu des blessés lors de cet accident ? Veuillez répondre par oui ou par non."
+
+  utter_ask_type_bien:
+  - text: "Quel type de bien a été touché par l'incendie ? (appartement, maison, local, etc.)"
+
+  utter_ask_pompiers:
+  - text: "Les pompiers sont-ils intervenus ? Veuillez répondre par oui ou par non."
+
+  utter_ask_dommages_majeurs:
+  - text: "Y a-t-il des dommages matériels importants ? Veuillez répondre par oui ou par non."
+
+  utter_ask_depot_plainte:
+  - text: "Avez-vous déposé plainte suite à ce vol ? Veuillez répondre par oui ou par non."
+
+  utter_ask_biens_voles:
+  - text: "Quels biens ont été volés ? Merci de fournir une liste ou une description des objets."
+
+  utter_ask_identite_tiers:
+  - text: "Connaissez-vous l'identité de la personne impliquée ? Si oui, merci de préciser son nom et ses coordonnées si possible."
+
+  utter_ask_nature_dommage:
+  - text: "Quelle est la nature du dommage causé ? Merci de décrire le type de dégât."
+
+  utter_submit:
+  - text: "Merci pour votre déclaration. Voici un résumé de votre sinistre :\n- Type de sinistre: {type_sinistre}\n- Date: {date_sinistre}\n- Lieu: {lieu}\n- Description: {description}\n- Nombre de personnes impliquées: {nb_personnes}\n\nVotre déclaration a été enregistrée avec succès et sera traitée dans les plus brefs délais."
+
+  utter_out_of_scope:
+  - text: "Je suis désolé, je ne peux pas vous aider avec cette demande. Je suis spécialisé dans la déclaration de sinistres."
+
+  utter_ask_rephrase:
+  - text: "Je n'ai pas bien compris. Pourriez-vous reformuler votre demande ?"
+
+  utter_confirm_correction:
+  - text: "Voulez-vous corriger une information précédente ? Si oui, dites-moi quelle information vous souhaitez modifier."
+
+actions:
+  - validate_sinistre_form
+  - action_submit_sinistre
+  - action_reset_slots
+  - action_show_summary
+  - action_start_sinistre_form
+  - action_ask_type_sinistre
+  - action_ask_date_sinistre
+  - action_ask_lieu
+  - action_ask_description
+  - action_ask_nb_personnes
+  - action_ask_immatriculation
+  - action_ask_tiers_impliques
+  - action_ask_blessures
+  - action_ask_type_bien
+  - action_ask_pompiers
+  - action_ask_dommages_majeurs
+  - action_ask_depot_plainte
+  - action_ask_biens_voles
+  - action_ask_identite_tiers
+  - action_ask_nature_dommage
+
+forms:
+  sinistre_form:
+    required_slots:
+      - type_sinistre
+      - date_sinistre
+      - lieu
+      - description
+      - nb_personnes
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

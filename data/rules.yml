@@ -1,0 +1,89 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+  - active_loop: null
+  wait_for_user_input: false
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Activate sinistre form when user wants to declare a sinistre
+  steps:
+  - intent: declare_sinistre
+  - action: utter_help
+  - action: action_start_sinistre_form
+  wait_for_user_input: false
+
+- rule: Submit form when all slots are filled
+  condition:
+  - active_loop: sinistre_form
+  steps:
+  - action: sinistre_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_submit_sinistre
+
+- rule: Handle out-of-scope messages
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: Provide help when requested
+  steps:
+  - intent: ask_help
+  - action: utter_help
+
+- rule: Provide help during form
+  condition:
+  - active_loop: sinistre_form
+  steps:
+  - intent: ask_help
+  - action: utter_help
+  - action: sinistre_form
+  - active_loop: sinistre_form
+
+- rule: Show summary when asked
+  steps:
+  - intent: ask_summary
+  - action: action_show_summary
+
+- rule: Ask to continue after stopping form
+  condition:
+  - active_loop: sinistre_form
+  steps:
+  - intent: stop_form
+  - action: utter_ask_continue
+
+- rule: Stop form after user denies continuing
+  condition:
+  - active_loop: sinistre_form
+  steps:
+  - intent: deny
+  - action: action_reset_slots
+  - action: utter_goodbye
+  - active_loop: null
+
+- rule: Continue form after user confirms
+  condition:
+  - active_loop: sinistre_form
+  steps:
+  - intent: affirm
+  - action: sinistre_form
+  - active_loop: sinistre_form
+
+- rule: Handle correction request
+  condition:
+  - active_loop: sinistre_form
+  steps:
+  - intent: correct_info
+  - action: utter_confirm_correction
+
+
